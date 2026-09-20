@@ -1,0 +1,49 @@
+using MechanicShop.Domain.Common.Results;
+
+namespace MechanicShop.Domain.WorkOrders.Billing;
+
+public sealed class InvoiceLineItem
+{
+    private InvoiceLineItem(Guid invoiceId, int lineNumber, string? description, int quantity, decimal unitPrice)
+    {
+        InvoiceId = invoiceId;
+        LineNumber = lineNumber;
+        Description = description;
+        Quantity = quantity;
+        UnitPrice = unitPrice;
+    }
+
+    public Guid InvoiceId { get; }
+    public int LineNumber { get; }
+    public string? Description { get; }
+    public int Quantity {get;}
+    public decimal UnitPrice { get; }
+    public decimal LineTotal => Quantity * UnitPrice;
+
+    public static Result<InvoiceLineItem> Create(Guid invoiceId, int lineNumber, string? description, int quantity, decimal unitPrice)
+    {
+        if(invoiceId == Guid.Empty)
+        {
+            return InvoiceLineItemError.InvoiceIdRequired;
+        }
+        if(lineNumber <=0)
+        {
+            return InvoiceLineItemError.LineNumberRequired;
+        }
+        if(string.IsNullOrWhiteSpace(description))
+        {
+            return InvoiceLineItemError.DescriptionRequired;
+        }
+        if(quantity <= 0)
+        {
+            return InvoiceLineItemError.QuantityInvalid;
+        }
+        if(unitPrice <= 0)
+        {
+            return InvoiceLineItemError.UnitPriceInvalid;
+        }
+        return new InvoiceLineItem(invoiceId,lineNumber,description,quantity,unitPrice);
+    }
+
+
+}

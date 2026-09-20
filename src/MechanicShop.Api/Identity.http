@@ -1,0 +1,39 @@
+@baseUrl = https://localhost:7262/identity
+
+### Login As Manager
+POST {{baseUrl}}/token/generate
+Content-Type: application/json
+
+{
+    "email": "pm@localhost",
+    "password": "pm@localhost"
+}
+
+### Login As Labor
+POST {{baseUrl}}/token/generate
+Content-Type: application/json
+
+{
+    "email": "john.labor@localhost",
+    "password": "john.labor@localhost"
+}
+
+### Refresh Token
+POST {{baseUrl}}/token/refresh-token
+Content-Type: application/json
+
+{
+    "ExpiredAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxOWE1OTEyOS02YzIwLTQxN2EtODM0ZC0xMWEyMDhkMzJkOTYiLCJlbWFpbCI6InBtQGxvY2FsaG9zdCIsInJvbGUiOiJNYW5hZ2VyIiwibmJmIjoxNzg5MDUyNDAxLCJleHAiOjE3ODkwNTYwMDEsImlhdCI6MTc4OTA1MjQwMSwiaXNzIjoibG9jYWxob3N0IiwiYXVkIjoibG9jYWxob3N0In0.TnvPIe2B78ooVcnsO7xhvahOIUncXmxX6lcpl8Sl6Bo",
+    "refreshToken": "lQTKiH+XOUHrzsBXaA6EWgTKEyCp6R2/jlLZ+LHWjwQ="
+}
+
+### Refresh Token
+GET {{baseUrl}}/current-user/claims
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxOWE1OTEyOS02YzIwLTQxN2EtODM0ZC0xMWEyMDhkMzJkOTYiLCJlbWFpbCI6InBtQGxvY2FsaG9zdCIsInJvbGUiOiJNYW5hZ2VyIiwibmJmIjoxNzg5NTQ1Mzc2LCJleHAiOjE3ODk1NDg5NzYsImlhdCI6MTc4OTU0NTM3NiwiaXNzIjoibG9jYWxob3N0IiwiYXVkIjoibG9jYWxob3N0In0.wJd3OLLqs03xknaWfnvY7SCbeS1kaIGsHLH43wvq3_M
+
+
+
+
+
+
+
