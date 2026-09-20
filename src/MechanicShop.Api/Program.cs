@@ -61,7 +61,7 @@ app.MapStaticAssets();
 app.MapRazorComponents<App>().AllowAnonymous()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(MechanicShop.Client._Imports).Assembly);
-
+app.MapPrometheusScrapingEndpoint();
 app.MapHub<WorkOrderHub>("/hubs/workorders");
 
 app.Run();
